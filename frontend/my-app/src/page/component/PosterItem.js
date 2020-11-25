@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import logo from '../../logo.svg';
 
 const PosterItemBlock = styled.div`
     display: flex;
@@ -30,20 +31,18 @@ const PosterItemBlock = styled.div`
         margin-top: 3rem;
     }
     `;
-    const PosterItem = ({ main }) => {
-        const { posterTitle, posterContent, posterRegister } = main;
+    const PosterItem = ({ category }) => {
+        const { ctgryNo, ctgryNm } = category;
         return (
             <PosterItemBlock>
-                {posterTitle && (
                     <div className="thumbnail">
-
+                       <img src={logo} />
                     </div>
-                )}
                 <div className="contents">
                     <h2>
-                        {posterContent}
-                    </h2>
-                <p>{posterRegister}</p>
+                        {ctgryNo}
+                    </h2><br />
+                        {ctgryNm}
                 </div>
             </PosterItemBlock>
         );

@@ -13,6 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -29,14 +32,17 @@ public class ApiServiceTest {
     @Rollback(false)
     public void 카테고리저장() throws Exception {
         Category category = new Category();
-        category.setCtgryNm("운동");
+        category.setCtgryNm("헬스장");
+        category.setCtgryRegistDt(new Date());
+        category.setCtgryUpdtDt(new Date());
+        category.setCtgryRegister(2L);
 
         Long savedNo = apiService.join(category);
 
         assertEquals(category, apiRepository.findOne(savedNo));
     }
 
-    @Test
+   /* @Test
     public void 중복_회원_예외() throws Exception {
 
         Category category1 = new Category();
@@ -53,15 +59,15 @@ public class ApiServiceTest {
         }
 
         fail("예외가 발생한다.");
-    }
+    }*/
 
     @Test
     @Rollback(false)
     public void 포스터저장() throws Exception {
         Poster poster = new Poster();
-        poster.setPosterTitle("포스터제목");
-        poster.setPosterContent("포스터내용");
-        poster.setPosterRegister(1L);
+        poster.setPosterTitle("포스터제목3");
+        poster.setPosterContent("포스터내용3");
+        poster.setPosterRegister(3L);
 
         Long savedNo = apiService.joinPoster(poster);
 
